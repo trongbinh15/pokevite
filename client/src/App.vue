@@ -53,7 +53,7 @@ body {
 }
 </style>
 <style scoped>
-.highlight ::v-deep b {
+.highlight :deep(b) {
   color: blue;
 }
 </style>
