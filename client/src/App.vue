@@ -1,34 +1,59 @@
 <script setup lang="ts">
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
-import HelloWorld from './components/HelloWorld.vue'
-import Pokedex from 'pokedex-promise-v2';
+import { storeToRefs } from 'pinia';
+import { onMounted, ref } from 'vue';
+import MainPokeView from './components/MainPokeView.vue';
+import MainSearch from './components/MainSearch.vue';
+import { useStore } from './store/store';
 
-const P = new Pokedex();
+const store = useStore();
 
+const searchResults = ref([] as string[]);
+const html = ref('');
 
-//  P.getPokemonByName(['eevee', 'ditto']) // with Promise
-//   .then((response) => {
-//     console.log(response);
-//   })
-//   .catch((error) => {
-//     console.log('There was an ERROR: ', error);
-//   });
+const { pokeNames } = storeToRefs(store);
+
+const onSearch = (value: string) => {
+  if (value.length > 0) {
+    const { results, highlights } = store.findPokemonByName(value);
+    if (results.length > 0) {
+      searchResults.value = results.map(p => p.target);
+      html.value = highlights.slice(0, 10).map(h => `<li>${h}</li>`).join('');
+    }
+    else {
+      searchResults.value = [];
+      html.value = 'Not found!';
+    }
+  } else {
+    searchResults.value = pokeNames.value;
+    html.value = '';
+  }
+}
+
+onMounted(async () => {
+  await store.getPokemon();
+})
 
 </script>
 
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" />
+  <div class="w-screen h-screen flex justify-center items-center">
+    <div
+      class="flex flex-col text-sm bg-blue-300 font-light w-[400px] h-[400px] p-5 items-center space-y-3 rounded-sm shadow-lg"
+    >
+      <MainSearch @on-search="onSearch" />
+      <ul class="highlight flex-col flex items-start w-full p-4" v-html="html"></ul>
+      <MainPokeView />
+    </div>
+  </div>
 </template>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+body {
+  font-family: "SuperLegendBoy";
+}
+</style>
+<style scoped>
+.highlight ::v-deep b {
+  color: blue;
 }
 </style>

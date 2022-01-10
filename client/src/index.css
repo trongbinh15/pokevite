@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "SuperLegendBoy";
+  src: url("./assets/SuperLegendBoy-4w8Y.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "PressStart2P";
+  src: url("./assets/PressStart2P-vaV7.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "EarlyGameBoy";
+  src: url("./assets/EarlyGameBoy.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "DiaryOfAn8BitMage";
+  src: url("./assets/DiaryOfAn8BitMage-lYDD.ttf") format("truetype");
+}
