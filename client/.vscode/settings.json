@@ -1,0 +1,9 @@
+{
+    "editor.formatOnSave": true,
+    "javascript.preferences.quoteStyle": "single",
+    "typescript.preferences.quoteStyle": "single",
+    "cSpell.words": [
+        "fuzzysort",
+        "Pinia"
+    ]
+}
