@@ -10,7 +10,8 @@
     "fuzzysort": "^1.1.4",
     "pinia": "^2.0.9",
     "vue": "^3.2.25",
-    "vue-router": "^4.0.12"
+    "vue-router": "^4.0.12",
+    "vue3-lazyload": "^0.2.5-beta"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^2.0.0",

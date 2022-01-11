@@ -15,7 +15,7 @@ const htmlHighlight = ref([] as string[]);
 const { pokeNames } = storeToRefs(store);
 
 const onSearch = (value: string) => {
-  if (value.length > 0) {
+  if (value && value.length > 0) {
     const { results, highlights } = store.findPokemonByName(value);
     if (results.length > 0) {
       searchResults.value = results.slice(0, 10).map(p => p.target);
@@ -44,7 +44,7 @@ onMounted(async () => {
 <template>
   <div class="flex items-center justify-center w-screen h-screen">
     <div
-      class="flex flex-col text-sm bg-blue-300 font-light w-[400px] h-[400px] p-5 items-center space-y-3 rounded-sm shadow-lg"
+      class="flex flex-col text-sm bg-blue-300 font-light w-[400px] h-[500px] p-5 items-center space-y-3 rounded-sm shadow-lg"
     >
       <MainSearch @on-search="onSearch" />
       <MainPokeView :highlight="htmlHighlight" :results="searchResults" @on-select="onSelect" />
