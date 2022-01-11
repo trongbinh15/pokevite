@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import fuzzysort from "fuzzysort";
+import { go, highlight } from "fuzzysort";
 
 type State = {
   pokeNames: string[];
@@ -13,9 +13,9 @@ export const useStore = defineStore({
     } as State),
   getters: {
     findPokemonByName: (state) => (name: string) => {
-      const results = fuzzysort.go(name, state.pokeNames);
+      const results = go(name, state.pokeNames);
       const highlights = results.map((result) =>
-        fuzzysort.highlight(result, "<b>", "</b>")
+        highlight(result, "<b>", "</b>")
       );
 
       return { results, highlights };
@@ -23,7 +23,7 @@ export const useStore = defineStore({
   },
 
   actions: {
-    async getPokemon() {
+    async getAllPokemon() {
       try {
         const response = await fetch(
           "https://pokeapi.co/api/v2/pokemon?limit=1181"
