@@ -24,14 +24,14 @@
     js-tokens "^4.0.0"
 
 "@babel/parser@^7.16.4", "@babel/parser@^7.6.0", "@babel/parser@^7.9.6":
-  version "7.16.7"
-  resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.16.7.tgz#d372dda9c89fcec340a82630a9f533f2fe15877e"
-  integrity sha512-sR4eaSrnM7BV7QPzGfEX5paG/6wrZM3I0HDzfIAK06ESvo9oy3xBuVBxE3MbQaKNhvg8g/ixjMWo2CGpzpHsDA==
+  version "7.16.8"
+  resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.16.8.tgz#61c243a3875f7d0b0962b0543a33ece6ff2f1f17"
+  integrity sha512-i7jDUfrVBWc+7OKcBzEe5n7fbv3i2fWtxKzzCvOjnzSxMfWMigAhtfJ7qzZNGFNMsCCd67+uz553dYKWXPvCKw==
 
 "@babel/types@^7.6.1", "@babel/types@^7.9.6":
-  version "7.16.7"
-  resolved "https://registry.yarnpkg.com/@babel/types/-/types-7.16.7.tgz#4ed19d51f840ed4bd5645be6ce40775fecf03159"
-  integrity sha512-E8HuV7FO9qLpx6OtoGfUQ2cjIYnbFwvZWYBS+87EwtdMvmUPJSwykpovFB+8insbpF0uJcpr8KMUi64XZntZcg==
+  version "7.16.8"
+  resolved "https://registry.yarnpkg.com/@babel/types/-/types-7.16.8.tgz#0ba5da91dd71e0a4e7781a30f22770831062e3c1"
+  integrity sha512-smN2DQc5s4M7fntyjGtyIPbRJv6wW4rU/94fmYJ7PKQuZkC0qGMHXJbg6sNGt12JmVr4k5YaptI/XtiLJBnmIg==
   dependencies:
     "@babel/helper-validator-identifier" "^7.16.7"
     to-fast-properties "^2.0.0"
@@ -195,7 +195,7 @@
     "@vue/compiler-dom" "3.2.26"
     "@vue/shared" "3.2.26"
 
-"@vue/devtools-api@^6.0.0-beta.21":
+"@vue/devtools-api@^6.0.0-beta.18", "@vue/devtools-api@^6.0.0-beta.21":
   version "6.0.0-beta.21.1"
   resolved "https://registry.yarnpkg.com/@vue/devtools-api/-/devtools-api-6.0.0-beta.21.1.tgz#f1410f53c42aa67fa3b01ca7bdba891f69d7bc97"
   integrity sha512-FqC4s3pm35qGVeXRGOjTsRzlkJjrBLriDS9YXbflHLsfA9FrcKzIyWnLXoNm+/7930E8rRakXuAc2QkC50swAw==
@@ -499,6 +499,13 @@ dom-serializer@^1.0.1:
     domhandler "^4.2.0"
     entities "^2.0.0"
 
+dom7@^4.0.2:
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/dom7/-/dom7-4.0.2.tgz#b3595f34c9658d72e88bb6fa6a6e7b430d4bd5fd"
+  integrity sha512-Ji4t3Y/vNQg6Q9bR+Syx6Td8qiq8116LE9h4OzbPuxdxK7DyyX7i8EXkYgBX6+EiX6+oYXDTH5BSN29G/n4jug==
+  dependencies:
+    ssr-window "^4.0.0"
+
 domelementtype@^2.0.1, domelementtype@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/domelementtype/-/domelementtype-2.2.0.tgz#9a0b6c2782ed6a1c7323d42267183df9bd8b1d57"
@@ -521,9 +528,9 @@ domutils@^2.8.0:
     domhandler "^4.2.0"
 
 electron-to-chromium@^1.4.17:
-  version "1.4.38"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.38.tgz#10ea58d73d36b13e78d5024f3b74a352d3958d01"
-  integrity sha512-WhHt3sZazKj0KK/UpgsbGQnUUoFeAHVishzHFExMxagpZgjiGYSC9S0ZlbhCfSH2L2i+2A1yyqOIliTctMx7KQ==
+  version "1.4.39"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.39.tgz#19c8e8ff712fe62bfdd4f3fe1c3b3fb4aa179ebb"
+  integrity sha512-bFH3gdRq/l7WlzSleiO6dwpZH3RhiJ8vlMq0tOJMfT+5nb+x397eJn2RHF6Ho/9GCKv+BkimNlUMHl9+Yh+Qcg==
 
 emmet@^2.3.0:
   version "2.3.5"
@@ -1226,6 +1233,11 @@ sourcemap-codec@^1.4.4:
   resolved "https://registry.yarnpkg.com/sourcemap-codec/-/sourcemap-codec-1.4.8.tgz#ea804bd94857402e6992d05a38ef1ae35a9ab4c4"
   integrity sha512-9NykojV5Uih4lgo5So5dtw+f0JgJX30KCNI8gwhz2J9A15wD0Ml6tjHKwf6fTSa6fAdVBdZeNOs9eJ71qCk8vA==
 
+ssr-window@^4.0.0, ssr-window@^4.0.2:
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/ssr-window/-/ssr-window-4.0.2.tgz#dc6b3ee37be86ac0e3ddc60030f7b3bc9b8553be"
+  integrity sha512-ISv/Ch+ig7SOtw7G2+qkwfVASzazUnvlDTwypdLoPoySv+6MqlOV10VwPSE6EWkGjhW50lUmghPmpYZXMu/+AQ==
+
 supports-color@^5.3.0:
   version "5.5.0"
   resolved "https://registry.yarnpkg.com/supports-color/-/supports-color-5.5.0.tgz#e2e69a44ac8772f78a1ec0b35b689df6530efc8f"
@@ -1244,6 +1256,14 @@ supports-preserve-symlinks-flag@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz#6eda4bd344a3c94aea376d4cc31bc77311039e09"
   integrity sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==
+
+swiper@^7.4.1:
+  version "7.4.1"
+  resolved "https://registry.yarnpkg.com/swiper/-/swiper-7.4.1.tgz#99fc586d1335b45250d2c6b3128dc91f8047d3e7"
+  integrity sha512-dhbL4tpYFvHug1J7GnKElfTi6EYhlZy/vNZRhHkWFyUsWZ1Vovipxj3la5gqllMogygXJMe3zvVv+f6eppvWiA==
+  dependencies:
+    dom7 "^4.0.2"
+    ssr-window "^4.0.2"
 
 tailwindcss@^3.0.12:
   version "3.0.12"
@@ -1453,6 +1473,13 @@ vue-demi@*:
   version "0.12.1"
   resolved "https://registry.yarnpkg.com/vue-demi/-/vue-demi-0.12.1.tgz#f7e18efbecffd11ab069d1472d7a06e319b4174c"
   integrity sha512-QL3ny+wX8c6Xm1/EZylbgzdoDolye+VpCXRhI2hug9dJTP3OUJ3lmiKN3CsVV3mOJKwFi0nsstbgob0vG7aoIw==
+
+vue-router@^4.0.12:
+  version "4.0.12"
+  resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-4.0.12.tgz#8dc792cddf5bb1abcc3908f9064136de7e13c460"
+  integrity sha512-CPXvfqe+mZLB1kBWssssTiWg4EQERyqJZes7USiqfW9B5N2x+nHlnsM1D3b5CaJ6qgCvMmYJnz+G0iWjNCvXrg==
+  dependencies:
+    "@vue/devtools-api" "^6.0.0-beta.18"
 
 vue-tsc@^0.29.8:
   version "0.29.8"
