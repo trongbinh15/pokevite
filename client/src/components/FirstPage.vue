@@ -68,7 +68,6 @@ async function load(name: string) {
 }
 
 watch(() => route.params.name, async (name) => {
-    console.log('first:', name)
     const res = await load(name as string);
     Object.assign(data, res);
 }, { immediate: true })
