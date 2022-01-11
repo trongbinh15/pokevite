@@ -14,6 +14,10 @@ const routes = [
         path: "",
         component: FirstPage,
       },
+      {
+        path: "evolution",
+        component: SecondPage,
+      },
     ],
   },
 ];
