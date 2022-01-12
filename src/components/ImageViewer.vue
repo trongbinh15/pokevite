@@ -1,5 +1,5 @@
 <template>
-    <div class="flex items-center justify-around w-[300px] my-3 select-none">
+    <div class="flex items-center justify-around w-full my-3 select-none">
         <div
             @click="onPrev"
             class="cursor-pointer"
