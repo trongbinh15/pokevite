@@ -1469,6 +1469,11 @@ vue-tsc@^0.29.8:
     "@volar/shared" "0.29.8"
     vscode-vue-languageservice "0.29.8"
 
+vue3-blocks-tree@^0.6.1:
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/vue3-blocks-tree/-/vue3-blocks-tree-0.6.1.tgz#0334cf6b876bb67e213bf946b47c57e247323612"
+  integrity sha512-/B+a0801YyxKlUH+glPVyOlxTrpLjjRkpfRaiOZWsXCkDdFfW8LVkmAawrFEAUd/F1HFZlx5C1PtnfyYNAPZfQ==
+
 vue3-lazyload@^0.2.5-beta:
   version "0.2.5-beta"
   resolved "https://registry.yarnpkg.com/vue3-lazyload/-/vue3-lazyload-0.2.5-beta.tgz#cf81237cd487ce14aa7c21af8bfd8b83fc1f5360"

@@ -1,9 +1,15 @@
 <template >
-    <ImageViewer :sprites="sprites" />
-    <div class="flex flex-col my-8 space-y-4 min-w-[200px]">
-        <HeightWeightComponent :height="height" :weight="weight" />
-        <TypeComponent :types="types" />
-        <StatComponent :stats="stats" />
+    <div class="w-[300px] relative">
+        <ImageViewer :sprites="sprites" />
+        <div class="flex flex-col my-8 mx-auto space-y-4 w-[150px]">
+            <HeightWeightComponent :height="height" :weight="weight" />
+            <TypeComponent :types="types" />
+            <StatComponent :stats="stats" />
+        </div>
+        <div
+            class="absolute inset-y-0 flex items-center cursor-pointer select-none -right-3 animate-debounce-x"
+            @click="gotoSecondPage"
+        >&gt;&gt;</div>
     </div>
 </template>
 <script lang="ts" setup>
@@ -65,6 +71,11 @@ async function load(name: string) {
     } catch (error) {
         return null;
     }
+}
+
+
+function gotoSecondPage() {
+    router.push({ name: 'second' })
 }
 
 watch(() => route.params.name, async (name) => {
