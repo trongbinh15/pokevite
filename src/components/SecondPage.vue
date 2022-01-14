@@ -5,7 +5,7 @@ import { defineComponent } from 'vue';
         <div class="flex flex-col mx-auto my-8 space-y-4">
             <h1 class="text-center">Evolution Chain</h1>
             <div
-                class="select-none max-h-[400px] max-w-[305px] sm:max-w-fit overflow-auto"
+                class="select-none max-h-[400px] box-content w-fit max-w-[300px] sm:max-w-full overflow-auto"
                 v-if="hasData"
             >
                 <blocks-tree
@@ -20,7 +20,7 @@ import { defineComponent } from 'vue';
                             <br />
                             <img
                                 v-lazy="{ src: getImageUrl(data.id), loading: spinner }"
-                                class="w-[96px] h-[96px] mx-auto"
+                                class="max-w-[96px] w-[96px] h-[96px] mx-auto"
                             />
                         </div>
                     </template>
