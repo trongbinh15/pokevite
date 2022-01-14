@@ -48,8 +48,10 @@ async function load(name: string) {
 }
 
 watch(() => route.params.name, async (name) => {
-    const res = await load(name as string);
-    Object.assign(data, res);
+    if (name) {
+        const res = await load(name as string);
+        Object.assign(data, res);
+    }
 }, { immediate: true })
 
 </script>
