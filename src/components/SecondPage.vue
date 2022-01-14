@@ -1,3 +1,5 @@
+import { defineComponent } from 'vue';
+
 <template >
     <div class="relative max-h-full">
         <div class="flex flex-col mx-auto my-8 space-y-4">
@@ -13,7 +15,10 @@
                         <div class="cursor-pointer" @click="onSelect(data.id)">
                             <span>{{ data.label }}</span>
                             <br />
-                            <img :src="getImageUrl(data.id)" />
+                            <img
+                                v-lazy="{ src: getImageUrl(data.id), loading: spinner }"
+                                class="w-[96px] h-[96px] mx-auto"
+                            />
                         </div>
                     </template>
                 </blocks-tree>
@@ -28,75 +33,43 @@
     </div>
 </template>
 
-<script lang="ts" setup>import { computed, onMounted, reactive } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
+<script lang="ts">
+import { defineComponent } from 'vue'
+import { getImageUrl, getEvolutionChain, TreeProp } from '../service/pokemon.service'
+import spinner from '../assets/Spinner-1s-96px.gif'
 
-const router = useRouter();
-const route = useRoute();
-
-type TreeProp = {
-    label: string;
-    children: TreeProp;
-    id: string;
-    expand: boolean;
-    isBaby: boolean;
-};
-
-const treeData = reactive({});
-
-const hasData = computed(() => Object.keys(treeData).length > 0);
-
-onMounted(async () => {
-    const { name } = route.params;
-    await load(name as string);
-})
-
-function getImageUrl(id: string) {
-    return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`
-}
-
-async function load(name: string) {
-    try {
-
-        const species = await fetch(
-            "https://pokeapi.co/api/v2/pokemon-species/" + name
-        );
-
-        const speciesData = await species.json();
-
-        const evoChain = await fetch(
-            speciesData.evolution_chain.url
-        );
-
-        const evoChainData = await evoChain.json();
-
-        const data = retrieveData(evoChainData.chain);
-        Object.assign(treeData, data);
-
-    } catch (error) {
-        Object.assign(treeData, {});
+// at this time beforeRouteEnter is not support setup script
+export default defineComponent({
+    data() {
+        return {
+            treeData: {} as TreeProp,
+            spinner: spinner
+        }
+    },
+    computed: {
+        hasData(): boolean {
+            return Object.keys(this.treeData).length > 0;
+        },
+    },
+    methods: {
+        onSelect(id: string) {
+            this.$router.push(`/pokemon/${id}`);
+        },
+        getImageUrl(id: string) {
+            return getImageUrl(id);
+        },
+        gotoFirstPage() {
+            this.$router.push({ name: 'first' });
+        }
+    },
+    beforeRouteEnter: async function (to, from, next) {
+        const { name } = to.params;
+        const data = await getEvolutionChain(name as string);
+        next((vm: any) => {
+            vm.treeData = data;
+        });
     }
-}
-
-function retrieveData(data: any): TreeProp {
-    const obj = Object.assign({}, {
-        label: data.species.name,
-        id: data.species.url.split('/')[6],
-        isBaby: data.is_baby,
-        expand: false,
-        children: data.evolves_to.map((x: any) => retrieveData(x))
-    });
-
-    return obj;
-}
-
-function onSelect(name: string) {
-    router.push(`/pokemon/${name}`);
-}
-
-function gotoFirstPage() {
-    router.push({ name: 'first' })
-}
+})
 </script>
 
 <style scoped>

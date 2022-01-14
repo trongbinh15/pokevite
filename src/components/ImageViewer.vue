@@ -5,7 +5,13 @@
             class="cursor-pointer"
             :class="hasPrevImage ? 'visible' : 'invisible'"
         >&#60;</div>
-        <img v-lazy="existImage[imageIndex]" class="w-1/3" />
+        <div class="p-1 bg-white rounded-lg shadow-md">
+            <img
+                v-lazy="{ src: existImage[imageIndex], loading: spinner }"
+                class="w-[96px] h-[96px] mx-auto"
+            />
+        </div>
+
         <div
             @click="onNext"
             class="cursor-pointer"
@@ -15,6 +21,7 @@
 </template>
 <script lang="ts" setup>
 import { computed, PropType, ref, watch } from 'vue';
+import spinner from '../assets/Spinner-1s-96px.gif'
 
 const prop = defineProps({
     sprites: {

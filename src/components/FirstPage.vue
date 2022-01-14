@@ -1,27 +1,35 @@
 <template >
     <div class="w-[300px] relative">
-        <ImageViewer :sprites="sprites" />
+        <ImageViewer :sprites="pokemonData.sprites" />
         <div class="flex flex-col my-8 mx-auto space-y-4 w-[150px]">
-            <HeightWeightComponent :height="height" :weight="weight" />
-            <TypeComponent :types="types" />
-            <StatComponent :stats="stats" />
+            <HeightWeightComponent :height="pokemonData.height" :weight="pokemonData.weight" />
+            <TypeComponent :types="pokemonData.types" />
+            <StatComponent :stats="pokemonData.stats" />
         </div>
         <div
+            v-if="!loading"
             class="absolute inset-y-0 flex items-center cursor-pointer select-none -right-3 animate-debounce-x"
             @click="gotoSecondPage"
         >&gt;&gt;</div>
+        <div
+            v-else
+            class="absolute inset-y-0 flex items-center w-8 cursor-pointer select-none -right-3"
+        >
+            <img :src="spinner" />
+        </div>
     </div>
 </template>
-<script lang="ts" setup>
-import { reactive, toRefs, watch } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
+
+<script lang="ts">
+import { defineComponent, toRefs } from 'vue'
+import spinner from '../assets/Spinner-1s-96px.gif'
+import { loadImage } from '../service/helper';
+import { getPokemonInfo } from '../service/pokemon.service'
 import HeightWeightComponent from './HeightWeightComponent.vue';
 import ImageViewer from './ImageViewer.vue';
 import StatComponent from './StatComponent.vue';
 import TypeComponent from './TypeComponent.vue';
 
-const route = useRoute()
-const router = useRouter()
 
 type DataType = {
     sprites?: {
@@ -46,41 +54,43 @@ type DataType = {
 
 }
 
-const data = reactive({
-    sprites: {
-        front_default: '',
-        front_shiny: '',
-        back_default: '',
-        back_shiny: '',
+export default defineComponent({
+    data: () => ({
+        spinner: spinner,
+        pokemonData: {} as DataType,
+        loading: false,
+    }),
+    components: {
+        HeightWeightComponent,
+        ImageViewer,
+        StatComponent,
+        TypeComponent,
     },
-    height: 0,
-    weight: 0,
-    types: [],
-    stats: []
-} as DataType);
+    methods: {
+        gotoSecondPage() {
+            this.$router.push({ name: 'second' })
+            this.loading = true;
+        },
+    },
+    async beforeRouteEnter(to, from, next) {
+        const { name } = to.params;
+        const data = await getPokemonInfo(name as string);
 
-const { sprites, height, weight, types, stats } = toRefs(data);
+        const defaultImage = data.sprites.front_default;
+        await loadImage(defaultImage);
+        next((vm: any) => {
+            vm.pokemonData = data;
+        });
+    },
+    async beforeRouteUpdate(to, from, next) {
+        const { name } = to.params;
+        const data = await getPokemonInfo(name as string);
 
-async function load(name: string) {
-    try {
-        const response = await fetch(
-            "https://pokeapi.co/api/v2/pokemon/" + name
-        );
-        const data = await response.json();
-        return data;
-    } catch (error) {
-        return null;
-    }
+        const defaultImage = data.sprites.front_default;
+        await loadImage(defaultImage);
+        this.pokemonData = data;
+        next();
+    },
 }
-
-
-function gotoSecondPage() {
-    router.push({ name: 'second' })
-}
-
-watch(() => route.params.name, async (name) => {
-    const res = await load(name as string);
-    Object.assign(data, res);
-}, { immediate: true })
+)
 </script>
-
