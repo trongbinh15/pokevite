@@ -44,7 +44,7 @@ onMounted(async () => {
 <template>
   <div class="flex items-center justify-center w-screen h-screen">
     <div
-      class="flex flex-col text-sm bg-blue-300 font-light w-[400px] h-[500px] p-5 items-center space-y-3 rounded-sm shadow-lg"
+      class="flex flex-col text-sm bg-blue-300 font-light w-full sm:w-[400px] max-h-screen overflow-auto h-[500px] p-5 items-center space-y-3 rounded-sm shadow-lg"
     >
       <MainSearch @on-search="onSearch" />
       <MainPokeView :highlight="htmlHighlight" :results="searchResults" @on-select="onSelect" />

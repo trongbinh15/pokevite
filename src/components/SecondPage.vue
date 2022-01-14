@@ -4,7 +4,10 @@ import { defineComponent } from 'vue';
     <div class="relative max-h-full">
         <div class="flex flex-col mx-auto my-8 space-y-4">
             <h1 class="text-center">Evolution Chain</h1>
-            <div class="select-none max-h-[400px] overflow-auto" v-if="hasData">
+            <div
+                class="select-none max-h-[400px] max-w-[305px] sm:max-w-fit overflow-auto"
+                v-if="hasData"
+            >
                 <blocks-tree
                     :data="treeData"
                     :horizontal="true"
