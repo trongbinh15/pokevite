@@ -1,7 +1,7 @@
 <template >
     <div class="flex items-center justify-center w-screen h-screen">
         <div
-            class="flex flex-col items-center p-5 text-sm font-light bg-blue-300 rounded-sm shadow-lg w-fit h-fit"
+            class="flex flex-col items-center max-h-screen p-5 overflow-auto text-sm font-light bg-blue-300 rounded-sm shadow-lg w-fit h-fit"
         >
             <Navigation :id="id" />
             <div class="text-lg">{{ displayName }}</div>
