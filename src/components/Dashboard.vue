@@ -46,6 +46,7 @@ onMounted(async () => {
     <div
       class="flex flex-col text-sm bg-blue-300 font-light w-full sm:w-[400px] max-h-screen overflow-auto h-[500px] p-5 items-center space-y-3 rounded-sm shadow-lg"
     >
+      <h1 class="text-lg">Pokemon Dex</h1>
       <MainSearch @on-search="onSearch" />
       <MainPokeView :highlight="htmlHighlight" :results="searchResults" @on-select="onSelect" />
     </div>
